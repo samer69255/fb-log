@@ -41,7 +41,7 @@ var  User={};
 
       User.email = req.body.email;
     User.pass = req.body.pass;
-    User.ip = req.connection.remoteAddress;
+    User.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     User.time = new Date().toUTCString();
   User['user-agent'] = req.get('User-Agent');
   try {
