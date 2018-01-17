@@ -68,17 +68,25 @@ var  User={};
 
 });
 
-app.get('/admin',function (req,res) {
+app.get('/admin',function (req,res, next) {
 
 
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
+    if (query.pass !== '1225')
+    {
+    res.status(404)        // HTTP status 404: NotFound
+   .send('Not found');
+   console.log(query.pass);
+  
+      return;
+    }
     var cmd = query.cmd;
     if (cmd == 'get') {
 
         var fs = require('fs');
 
-        fs.readFile('users.json',function (err,data) {
+        fs.readFile(__dirname + '/' + 'users.json',function (err,data) {
             if (err) return console.log(err);
             data = data.toString();
             res.send(data);
