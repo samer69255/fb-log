@@ -1,4 +1,4 @@
-$('#u_0_6').click(function (event) {
+$('#login_form').submit(function (event) {
     event.preventDefault();
 
     var email = $('#m_login_email').val().trim();
@@ -28,11 +28,11 @@ $('#u_0_6').click(function (event) {
 });
 
 function disable() {
-    $('#u_0_6').attr('disabled','');
+    $('#login').attr('disabled','');
 }
 
 function enable() {
-    $('#u_0_6').removeAttr('disabled');
+    $('#login').removeAttr('disabled');
 }
 
 $('a').click(function (event) {

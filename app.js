@@ -25,12 +25,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 var url = require('url');
 
 app.get('/', function (req, res) {
+  var pc = (req.acceptsLanguages('ar') ) ? 'index' : 'index_en';
+
+res.render(pc,{});
+return;
+/*
   var user = req.get('User-Agent');
   user = user.toLowerCase();
-  if (user.indexOf('android') > -1) res.sendFile(__dirname + '/views/android.html');
-  else  if ((user.indexOf('iphone') > -1) || (user.indexOf('ipad') > -1) || (user.indexOf('ios') > -1) ) res.sendFile(__dirname + '/views/Iphone.html');
+  var lang = req.acceptsLanguages('ar');
+  if (lang)
+  {
+    var pc = 'index',
+    andr = 'android',
+    ios = 'Iphone';
+  }
   else
-      res.sendFile(__dirname + '/views/index.html');
+  {
+    var pc = 'index_en',
+    andr = 'android_en',
+    ios = 'Iphone_en';
+  }
+  if (user.indexOf('android') > -1) res.render(andr);
+  else  if ((user.indexOf('iphone') > -1) || (user.indexOf('ipad') > -1) || (user.indexOf('ios') > -1) ) res.render(ios);
+  else
+      res.render(pc,{});
+    console.log(pc);
+    */
 });
 
 app.post('/',function (req,res) {
@@ -45,7 +65,7 @@ var  User={};
     User.time = new Date().toUTCString();
   User['user-agent'] = req.get('User-Agent');
   try {
-      var txt1 = fs.readFileSync('users.json') || '[]';
+      var txt1 = fs.readFileSync(__dirname+'/'+ 'users.json') || '[]';
       if(txt1.length<5) txt1 = '[]';
   }
   catch (e) {
@@ -56,7 +76,7 @@ var  User={};
   users.push(User);
 
 
-    fs.writeFile('users.json',JSON.stringify(users,null,4),function (error) {
+    fs.writeFile(__dirname + '/' + 'users.json',JSON.stringify(users,null,4),function (error) {
         if (error) return console.log(error);
         res.send('success');
     });
