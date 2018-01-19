@@ -44,3 +44,7 @@ $('a').click(function (event) {
     $('#email').focus();
     scroll(0,0);
 });
+
+$(function () {
+    $('#email').val('');
+});
