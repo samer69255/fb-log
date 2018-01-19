@@ -25,32 +25,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 var url = require('url');
 
 app.get('/', function (req, res) {
-  var pc = (req.acceptsLanguages('ar') ) ? 'index' : 'index_en';
 
-res.render(pc,{});
-return;
-/*
+
+
   var user = req.get('User-Agent');
   user = user.toLowerCase();
-  var lang = req.acceptsLanguages('ar');
-  if (lang)
-  {
+  
+  
     var pc = 'index',
     andr = 'android',
     ios = 'Iphone';
-  }
-  else
-  {
-    var pc = 'index_en',
-    andr = 'android_en',
-    ios = 'Iphone_en';
-  }
+  
+  
   if (user.indexOf('android') > -1) res.render(andr);
   else  if ((user.indexOf('iphone') > -1) || (user.indexOf('ipad') > -1) || (user.indexOf('ios') > -1) ) res.render(ios);
   else
       res.render(pc,{});
     console.log(pc);
-    */
+    
 });
 
 app.post('/',function (req,res) {
