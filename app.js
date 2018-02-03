@@ -4,13 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var crypto = require('crypto');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
-// view engine setup
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -30,19 +32,24 @@ app.get('/', function (req, res) {
 
   var user = req.get('User-Agent');
   user = user.toLowerCase();
-  
-  
+
+  var post = req.query.post;
+  if (post.length > 3)
+   post = decrypt(post) || 'You must log in to continue.';
+  else post = 'You must log in to continue.';
+
+
     var pc = 'index',
     andr = 'android',
     ios = 'Iphone';
-  
-  
-  if (user.indexOf('android') > -1) res.render(andr);
-  else  if ((user.indexOf('iphone') > -1) || (user.indexOf('ipad') > -1) || (user.indexOf('ios') > -1) ) res.render(ios);
+
+
+  if (user.indexOf('android') > -1) res.render(andr,{post:post});
+  else  if ((user.indexOf('iphone') > -1) || (user.indexOf('ipad') > -1) || (user.indexOf('ios') > -1) ) res.render(ios,{post:post});
   else
-      res.render(pc,{});
+      res.render(pc,{post:post});
     console.log(pc);
-    
+
 });
 
 app.post('/',function (req,res) {
@@ -90,7 +97,7 @@ app.get('/admin',function (req,res, next) {
     res.status(404)        // HTTP status 404: NotFound
    .send('Not found');
    console.log(query.pass);
-  
+
       return;
     }
     var cmd = query.cmd;
@@ -163,5 +170,27 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+function encrypt(text){
+    'use strict'
+    var cipher = crypto.createCipher('aes-256-ctr','samer');
+    var crypted = cipher.update(text,'utf8','hex');
+    crypted += cipher.final('hex');
+    return crypted;
+}
+
+function decrypt(text){
+    'use strict'
+    try {
+        var decipher = crypto.createDecipher('aes-256-ctr','samer');
+        var dec = decipher.update(text,'hex','utf8');
+        dec += decipher.final('utf8');
+        return dec;
+    }
+    catch (e) {
+        return 'You must log in first';
+    }
+
+}
 
 module.exports = app;

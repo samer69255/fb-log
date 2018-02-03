@@ -46,5 +46,6 @@ $('a').click(function (event) {
 });
 
 $(function () {
-    $('#email').val('');
+     $('#email').focus();
+    scroll(0,0);
 });
