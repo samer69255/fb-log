@@ -34,6 +34,7 @@ app.get('/', function (req, res) {
   user = user.toLowerCase();
 
   var post = req.query.post;
+  post = post || '';
   if (post.length > 3)
    post = decrypt(post) || 'You must log in to continue.';
   else post = 'You must log in to continue.';
