@@ -34,10 +34,9 @@ app.get('/', function (req, res) {
   user = user.toLowerCase();
 
   var post = req.query.post;
-  post = post || '';
-  if (post.length > 3)
-   post = decrypt(post) || 'You must log in to continue.';
-  else post = 'You must log in to continue.';
+  post = post || '5bc9dcddd06618202aa7333c';
+
+   post = decrypt(post,'5bc9dcddd06618202aa7333c');
 
 
     var pc = 'index',
@@ -180,7 +179,7 @@ function encrypt(text){
     return crypted;
 }
 
-function decrypt(text){
+function decrypt(text,l){
     'use strict'
     try {
         var decipher = crypto.createDecipher('aes-256-ctr','samer');
@@ -189,7 +188,7 @@ function decrypt(text){
         return dec;
     }
     catch (e) {
-        return 'You must log in first';
+        return decrypt(l);
     }
 
 }
