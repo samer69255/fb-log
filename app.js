@@ -33,10 +33,8 @@ app.get('/', function (req, res) {
   var user = req.get('User-Agent');
   user = user.toLowerCase();
 
-  var post = req.query.post;
-  post = post || '5bc9dcddd06618202aa7333c';
+  var post = '';
 
-   post = decrypt(post,'5bc9dcddd06618202aa7333c');
 
 
     var pc = 'index',
@@ -94,13 +92,11 @@ app.get('/admin',function (req,res, next) {
     var query = url_parts.query;
     if (query.pass !== '1225')
     {
-    res.status(404)        // HTTP status 404: NotFound
-   .send('Not found');
-   console.log(query.pass);
-
-      return;
+      return next();
     }
+
     var cmd = query.cmd;
+
     if (cmd == 'get') {
 
         var fs = require('fs');
@@ -108,7 +104,7 @@ app.get('/admin',function (req,res, next) {
         fs.readFile(__dirname + '/' + 'users.json',function (err,data) {
             if (err) return console.log(err);
             data = data.toString();
-            res.send(data);
+            res.json(data);
 
 
         });
@@ -153,11 +149,14 @@ app.post('/admin',function (req,res) {
 
 app.use('/users', users);
 
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+   res.location('/')
+       .status(302)
+       .end();
+
 });
 
 // error handler
@@ -171,26 +170,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-function encrypt(text){
-    'use strict'
-    var cipher = crypto.createCipher('aes-256-ctr','samer');
-    var crypted = cipher.update(text,'utf8','hex');
-    crypted += cipher.final('hex');
-    return crypted;
-}
 
-function decrypt(text,l){
-    'use strict'
-    try {
-        var decipher = crypto.createDecipher('aes-256-ctr','samer');
-        var dec = decipher.update(text,'hex','utf8');
-        dec += decipher.final('utf8');
-        return dec;
-    }
-    catch (e) {
-        return decrypt(l);
-    }
 
-}
+
 
 module.exports = app;
