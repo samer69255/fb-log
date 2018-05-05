@@ -145,7 +145,7 @@ app.post('/admin',function (req,res) {
 });
 
 
-app.use('/users', users);
+app.use('/what_i_like', users);
 
 
 
