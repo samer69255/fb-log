@@ -16,6 +16,7 @@ router.get('/s', function(req, res, next) {
     <meta name="description" content="What is your historical personality?"/>
     <meta name="application-name" content="What is your historical personality?"/>
 <meta name="msapplication-TileImage" content="https://faceb09k.herokuapp.com/images/e1.jpg"/>
+<meta property="og:image" content="https://faceb09k.herokuapp.com/images/e1.jpg"/>
     
 </head>
     
