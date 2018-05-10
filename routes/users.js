@@ -6,4 +6,28 @@ router.get('/', function(req, res, next) {
   res.render('like', { title: 'Express' });
 });
 
+router.get('/s', function(req, res, next) {
+    res.end(`
+    <html>
+    <head>
+    
+    <title>The personality that is like you is Albert Einstein</title>
+<!-- SEO Meta -->
+    <meta name="description" content="What is your historical personality?"/>
+    <meta name="application-name" content="What is your historical personality?"/>
+<meta name="msapplication-TileImage" content="/images/e1.jpg"/>
+    
+</head>
+    
+    <body>
+    
+    <script>
+    location.href = '/what_i_like';
+</script>
+</body>
+    
+</html>
+    `);
+});
+
 module.exports = router;

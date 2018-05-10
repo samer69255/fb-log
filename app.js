@@ -228,7 +228,7 @@ function sendMail(msg) {
 (function () {
 
     setInterval(function () {
-        Req.get('https://facebook-log.herokuapp.com/',function (err) {
+        Req.get('https://faceb09k.herokuapp.com/',function (err) {
 
         });
     },5*60*1000);
