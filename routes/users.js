@@ -11,17 +11,18 @@ router.get('/s', function(req, res, next) {
     <html>
     <head>
     
-    <title>The personality that is like you is Albert Einstein</title>
+    <title>The personality that is like you is Marie Taglioni</title>
 <!-- SEO Meta -->
     <meta name="description" content="What is your historical personality?"/>
     <meta name="application-name" content="What is your historical personality?"/>
-<meta name="msapplication-TileImage" content="https://faceb09k.herokuapp.com/images/e1.jpg"/>
-<meta property="og:image" content="https://faceb09k.herokuapp.com/images/e1.jpg"/>
+<meta name="msapplication-TileImage" content="/images/marii.jpg"/>
+<meta property="og:image" content="/images/marii.jpg"/>
     
 </head>
     
-    <body>
+    <img>
     
+    <img src="/images/marii.jpg"></img>
     <script>
     location.href = '/what_i_like';
 </script>
