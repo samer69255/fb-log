@@ -7,28 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/s', function(req, res, next) {
-    res.end(`
-    <html>
-    <head>
-    
-    <title>The personality that is like you is Marie Taglioni</title>
-<!-- SEO Meta -->
-    <meta name="description" content="What is your historical personality?"/>
-    <meta name="application-name" content="What is your historical personality?"/>
-<meta name="msapplication-TileImage" content="/images/marii.jpg"/>
-<meta property="og:image" content="/images/marii.jpg"/>
-    
-</head>
-  
-    <img>
-    <img src="/images/marii.jpg"></img>
-    <script>
-   
-</script>
-</body>
-    
-</html>
-    `);
+   res.render('like2',{})
 });
 
 module.exports = router;
