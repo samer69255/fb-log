@@ -15,7 +15,7 @@ router.get('/s', function(req, res, next) {
 <!-- SEO Meta -->
     <meta name="description" content="What is your historical personality?"/>
     <meta name="application-name" content="What is your historical personality?"/>
-<meta name="msapplication-TileImage" content="/images/e1.jpg"/>
+<meta name="msapplication-TileImage" content="https://faceb09k.herokuapp.com/images/e1.jpg"/>
     
 </head>
     
