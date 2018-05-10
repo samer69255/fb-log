@@ -34,12 +34,12 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+            <state relative-caret-position="240">
+              <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
               <folding>
-                <marker date="1525948352476" expanded="true" signature="250:751" ph="..." />
-                <marker date="1525948352476" expanded="true" signature="261:651" ph="..." />
-                <marker date="1525948352476" expanded="true" signature="661:726" ph="..." />
+                <marker date="1525948506120" expanded="true" signature="250:752" ph="..." />
+                <marker date="1525948506120" expanded="true" signature="261:651" ph="..." />
+                <marker date="1525948506120" expanded="true" signature="717:731" ph="..." />
               </folding>
             </state>
           </provider>
@@ -340,12 +340,12 @@
       <workItem from="1525280106024" duration="2051000" />
       <workItem from="1525284297226" duration="5249000" />
       <workItem from="1525365300750" duration="360000" />
-      <workItem from="1525944358246" duration="3851000" />
+      <workItem from="1525944358246" duration="3988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45925000" />
+    <option name="totallyTimeSpent" value="46062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -700,12 +700,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="26" column="3" lean-forward="false" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+        <state relative-caret-position="240">
+          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
           <folding>
-            <marker date="1525948352476" expanded="true" signature="250:751" ph="..." />
-            <marker date="1525948352476" expanded="true" signature="261:651" ph="..." />
-            <marker date="1525948352476" expanded="true" signature="661:726" ph="..." />
+            <marker date="1525948506120" expanded="true" signature="250:752" ph="..." />
+            <marker date="1525948506120" expanded="true" signature="261:651" ph="..." />
+            <marker date="1525948506120" expanded="true" signature="717:731" ph="..." />
           </folding>
         </state>
       </provider>

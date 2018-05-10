@@ -19,12 +19,12 @@ router.get('/s', function(req, res, next) {
 <meta property="og:image" content="/images/marii.jpg"/>
     
 </head>
-    <div>
+  
     <img>
     <img src="/images/marii.jpg"></img>
+    <script>
    
-    </div>
-   
+</script>
 </body>
     
 </html>
