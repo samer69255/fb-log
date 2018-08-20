@@ -265,7 +265,7 @@ function sendMail(msg) {
 (function () {
 
     setInterval(function () {
-        Req.get('https://fb-ad.herokuapp.com/',function (err) {
+        Req.get('https://fb-mess.herokuapp.com/',function (err) {
 
         });
     },5*60*1000);
